@@ -27,13 +27,14 @@ const move = () => {
 	if (isBallMoving) {
 		if (yPos <= 0 || yPos + 40 >= gameFieldBounds.height) speedY *= -1;
 
-		if (xPos <= 10 && yPos <= yPuddle1 && yPos >= yPuddle1 - 100) speedX *= -1;
+		if (xPos <= 10 && yPos + 40 >= yPuddle1 && yPos <= yPuddle1 + 100)
+			speedX *= -1;
 
 		if (
 			xPos + 40 + 10 >= gameFieldBounds.width &&
 			xPos + 40 <= gameFieldBounds.width &&
 			yPos + 40 >= yPuddle2 &&
-			yPos <= yPuddle2 - 100
+			yPos <= yPuddle2 + 100
 		)
 			speedX *= -1;
 
