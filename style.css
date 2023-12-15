@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container{
+    border: 2px solid lightgray;
+    box-shadow: 0px 0px 25px lightgray;
+    height: 75vh;
+    width: 75vw;
+    position: relative;
+}
+
+.ball{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: tomato;
+    background: linear-gradient(180deg, rgb(255, 150, 138) 0%, rgba(255, 91, 74, 1) 100%);
+    border-radius: 100%;
+    left: 10px;
+    top: 20px
+}
+
+.puddle{
+    position: absolute;
+    width: 10px;
+    height: 100px;
+    background: #53C1FF;
+}
