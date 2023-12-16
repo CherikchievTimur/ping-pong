@@ -2,11 +2,18 @@ const ball = document.getElementById("ball");
 const puddle1 = document.getElementById("puddle-1");
 const puddle2 = document.getElementById("puddle-2");
 const gameField = document.getElementById("game-field");
+const score1 = document.getElementById(`score-1`);
+const score2 = document.getElementById(`score-2`);
 
 let gameFieldBounds = gameField.getBoundingClientRect();
 
 console.log(gameFieldBounds.height);
 console.log(gameFieldBounds.width);
+
+let initScore1 = 0;
+let initScore2 = 0;
+score1.textContent = initScore1;
+score2.textContent = initScore2;
 
 let xPos = gameFieldBounds.width / 2 - 20;
 let yPos = gameFieldBounds.height / 2 - 20;
@@ -23,6 +30,11 @@ let yPuddle2 = gameFieldBounds.height / 2 - 50;
 
 let isBallMoving = false;
 
+function resetBall() {
+	xPos = gameFieldBounds.width / 2 - 20;
+	yPos = gameFieldBounds.height / 2 - 20;
+	isBallMoving = false;
+}
 const move = () => {
 	if (isBallMoving) {
 		if (yPos <= 0 || yPos + 40 >= gameFieldBounds.height) speedY *= -1;
@@ -38,10 +50,16 @@ const move = () => {
 		)
 			speedX *= -1;
 
-		if (xPos <= 0 || xPos + 40 >= gameFieldBounds.width) {
-			xPos = gameFieldBounds.width / 2 - 20;
-			yPos = gameFieldBounds.height / 2 - 20;
-			isBallMoving = false;
+		if (xPos <= 0) {
+			initScore2++;
+			score2.textContent = initScore2;
+			console.log(initScore2);
+			resetBall();
+		} else if (xPos + 40 >= gameFieldBounds.width) {
+			initScore1++;
+			score1.textContent = initScore1;
+			console.log(initScore1);
+			resetBall();
 		}
 
 		ball.style.left = `${xPos}px`;
@@ -72,9 +90,6 @@ const keyUp = (e) => {
 	}
 	puddle1.style.top = `${yPuddle1}px`;
 	puddle2.style.top = `${yPuddle2}px`;
-
-	console.log(`xPos: ${xPos}, yPos: ${yPos}`);
-	console.log(`yPuddle1: ${yPuddle1}, yPuddle2: ${yPuddle2}`);
 };
 
 const keyDown = (e) => {
