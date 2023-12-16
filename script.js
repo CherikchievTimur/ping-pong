@@ -35,6 +35,13 @@ function resetBall() {
 	yPos = gameFieldBounds.height / 2 - 20;
 	isBallMoving = false;
 }
+
+resetBall();
+ball.style.left = `${xPos}px`;
+ball.style.top = `${yPos}px`;
+puddle1.style.top = `${yPuddle1}px`;
+puddle2.style.top = `${yPuddle2}px`;
+
 const move = () => {
 	if (isBallMoving) {
 		if (yPos <= 0 || yPos + 40 >= gameFieldBounds.height) speedY *= -1;
@@ -76,7 +83,7 @@ let speedPuddleY = 30;
 
 puddle2.style.right = "0px";
 
-const keyUp = (e) => {
+const keyDown = (e) => {
 	if (e.code == "ArrowUp") {
 		yPuddle2 = Math.max(0, yPuddle2 - speedPuddleY);
 	} else if (e.code == "ArrowDown") {
@@ -90,9 +97,7 @@ const keyUp = (e) => {
 	}
 	puddle1.style.top = `${yPuddle1}px`;
 	puddle2.style.top = `${yPuddle2}px`;
-};
 
-const keyDown = (e) => {
 	if (e.code == "Space") {
 		isBallMoving = true;
 		console.log(`Space bar pressed: ${isBallMoving}`);
@@ -101,4 +106,3 @@ const keyDown = (e) => {
 };
 
 document.addEventListener("keydown", keyDown);
-document.addEventListener("keyup", keyUp);
